@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas IPTV - أفضل خدمة بث تلفزيوني عبر الإنترنت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #ff6b00;
+            --dark: #0a1929;
+            --light: #f5f7fa;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* خلفية الفيديو المتحرك */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        #video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background-color: rgba(10, 25, 41, 0.9);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 107, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo i {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .cta-button {
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #e55a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        /* قسم البطل */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #ccc;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* صور الأفلام المتحركة - الآن في الأعلى */
+        .movie-showcase {
+            padding: 50px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: white;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .movie-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            transition: all 0.3s;
+        }
+
+        .movie-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .movie-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .movie-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .movie-title {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 15px;
+            font-weight: bold;
+            color: white;
+            text-align: right;
+        }
+
+        .sport-logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* قسم الباقات */
+        .packages {
+            padding: 80px 0;
+        }
+
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .package-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.2);
+        }
+
+        .package-card.popular {
+            background: linear-gradient(145deg, rgba(26, 115, 232, 0.15), rgba(255, 107, 0, 0.15));
+            border-color: var(--secondary);
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .package-name {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .package-features li {
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .package-features li i {
+            color: var(--secondary);
+            margin-left: 10px;
+        }
+
+        /* قسم طرق الدفع */
+        .payment {
+            padding: 80px 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .payment-method-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .payment-method-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.1);
+        }
+
+        .payment-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-icon {
+            font-size: 2.5rem;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .payment-method-card:hover .payment-icon {
+            transform: scale(1.1);
+        }
+
+        .payment-icon.paypal {
+            background-color: rgba(0, 48, 135, 0.2);
+            color: #003087;
+        }
+
+        .payment-icon.crypto {
+            background-color: rgba(247, 147, 26, 0.2);
+            color: #f7931a;
+        }
+
+        .payment-icon.wu {
+            background-color: rgba(0, 162, 227, 0.2);
+            color: #00a2e3;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .payment-action {
+            margin-top: 20px;
+        }
+
+        .payment-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .payment-link:hover {
+            background-color: #e55a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        /* تصميم جديد لاختيار العملة الرقمية */
+        .crypto-selector {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 3px solid #f7931a;
+        }
+
+        .crypto-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .crypto-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .crypto-option:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .crypto-option.active {
+            background-color: rgba(247, 147, 26, 0.3);
+            border: 1px solid #f7931a;
+        }
+
+        .crypto-icon {
+            font-size: 1.2rem;
+        }
+
+        .btc-icon { color: #f7931a; }
+        .usdt-icon { color: #26a17b; }
+        .eth-icon { color: #627eea; }
+
+        .crypto-address-container {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .crypto-address-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .crypto-address-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .crypto-address-text {
+            font-family: monospace;
+            word-break: break-all;
+            flex: 1;
+            padding-right: 10px;
+        }
+
+        .copy-address-btn {
+            background-color: rgba(247, 147, 26, 0.2);
+            color: #f7931a;
+            border: 1px solid #f7931a;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .copy-address-btn:hover {
+            background-color: rgba(247, 147, 26, 0.4);
+        }
+
+        .wu-info {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 3px solid #00a2e3;
+        }
+
+        /* قسم التواصل */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .whatsapp-contact {
+            background-color: rgba(37, 211, 102, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-contact i {
+            font-size: 4rem;
+            color: #25d366;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-contact h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-contact p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .whatsapp-button {
+            background-color: #25d366;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1da851;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* قسم التقييمات */
+        .testimonials {
+            padding: 80px 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-left: 15px;
+            color: var(--secondary);
+        }
+
+        .testimonial-info h4 {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .testimonial-info .stars {
+            color: #ffc107;
+            margin-top: 5px;
+        }
+
+        /* التذييل */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 50px 0 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .packages-container {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-container {
+                gap: 20px;
+            }
+
+            .payment-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .crypto-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- خلفية الفيديو -->
+    <div id="video-background">
+        <video autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-group-of-people-watching-a-movie-at-a-theater-46654-large.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-satellite-dish"></i>
+                <span>Atlas IPTV</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#movies">الأفلام والمسلسلات</a></li>
+                    <li><a href="#packages">الباقات</a></li>
+                    <li><a href="#payment">طرق الدفع</a></li>
+                    <li><a href="#testimonials">التقييمات</a></li>
+                    <li><a href="#contact">التواصل</a></li>
+                </ul>
+            </nav>
+            <a href="#packages" class="cta-button">اشترك الآن</a>
+        </div>
+    </header>
+
+    <!-- قسم البطل -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>أفضل خدمة <span class="highlight">IPTV</span> لمشاهدة كل ما تحب</h1>
+            <p>استمتع بأكثر من <span class="highlight">20,000</span> قناة تلفزيونية مباشرة، آلاف الأفلام والمسلسلات، ودوري أبطال أوروبا، الدوري الإنجليزي، والبطولات العالمية بجودة عالية وبدون تقطيع.</p>
+            <a href="#packages" class="cta-button">عرض الباقات والاشتراك <i class="fas fa-arrow-left"></i></a>
+        </div>
+    </section>
+
+    <!-- صور الأفلام والمسلسلات - الآن في الأعلى -->
+    <section class="movie-showcase" id="movies">
+        <div class="container">
+            <h2 class="section-title">أشهر القنوات والأفلام المتاحة</h2>
+            <p>استمتع بمشاهدة أحدث الأفلام والمسلسلات العالمية والعربية وأهم القنوات الرياضية بجودة فائقة الوضوح</p>
+            <div class="movie-grid">
+                <!-- أفلام الرعب الجديدة -->
+                <div class="movie-item">
+                    <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="أفلام رعب جديدة">
+                    <div class="movie-title">أفلام الرعب الجديدة</div>
+                </div>
+                
+                <!-- أفلام أكشن -->
+                <div class="movie-item">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="فيلم أكشن">
+                    <div class="movie-title">أفلام أكشن</div>
+                </div>
+                
+                <!-- أحداث رياضية -->
+                <div class="movie-item">
+                    <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="أحداث رياضية">
+                    <div class="movie-title">أحداث رياضية مباشرة</div>
+                    <div class="sport-logo">LIVE</div>
+                </div>
+                
+                <!-- قناة beIN Sports -->
+                <div class="movie-item">
+                    <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="beIN Sports">
+                    <div class="movie-title">beIN Sports</div>
+                    <div class="sport-logo" style="background-color: #e10600; color: white;">beIN</div>
+                </div>
+                
+                <!-- دوري أبطال أوروبا -->
+                <div class="movie-item">
+                    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="دوري الأبطال">
+                    <div class="movie-title">دوري أبطال أوروبا</div>
+                    <div class="sport-logo" style="background-color: #004d98; color: white;">UCL</div>
+                </div>
+                
+                <!-- الدوري الإنجليزي -->
+                <div class="movie-item">
+                    <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="الدوري الإنجليزي">
+                    <div class="movie-title">الدوري الإنجليزي الممتاز</div>
+                    <div class="sport-logo" style="background-color: #3d195b; color: white;">EPL</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الباقات -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <h2 class="section-title">باقات الاشتراك</h2>
+            <div class="packages-container">
+                <!-- الباقة الشهرية -->
+                <div class="package-card">
+                    <h3 class="package-name">باقة شهرية</h3>
+                    <div class="package-price">$15 <span>/شهر</span></div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> أكثر من 20,000 قناة</li>
+                        <li><i class="fas fa-check"></i> جودة تصل إلى 4K</li>
+                        <li><i class="fas fa-check"></i> أفلام ومسلسلات على الطلب</li>
+                        <li><i class="fas fa-check"></i> دعم فني 24/7</li>
+                        <li><i class="fas fa-check"></i> تشغيل على 2 جهاز</li>
+                    </ul>
+                    <a href="#payment" class="cta-button">اشتري الآن</a>
+                </div>
+
+                <!-- باقة 3 أشهر -->
+                <div class="package-card popular">
+                    <div class="popular-badge">الأكثر شعبية</div>
+                    <h3 class="package-name">3 أشهر</h3>
+                    <div class="package-price">$40 <span>/3 أشهر</span></div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> كل مميزات الباقة الشهرية</li>
+                        <li><i class="fas fa-check"></i> توفير 11%</li>
+                        <li><i class="fas fa-check"></i> تحديثات دورية للمحتوى</li>
+                        <li><i class="fas fa-check"></i> دعم فني متقدم</li>
+                        <li><i class="fas fa-check"></i> تشغيل على 3 أجهزة</li>
+                    </ul>
+                    <a href="#payment" class="cta-button">اشتري الآن</a>
+                </div>
+
+                <!-- باقة 6 أشهر -->
+                <div class="package-card">
+                    <h3 class="package-name">6 أشهر</h3>
+                    <div class="package-price">$75 <span>/6 أشهر</span></div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> كل مميزات الباقة السابقة</li>
+                        <li><i class="fas fa-check"></i> توفير 17%</li>
+                        <li><i class="fas fa-check"></i> قنوات رياضية خاصة</li>
+                        <li><i class="fas fa-check"></i> دعم فني متقدم</li>
+                        <li><i class="fas fa-check"></i> تشغيل على 4 أجهزة</li>
+                    </ul>
+                    <a href="#payment" class="cta-button">اشتري الآن</a>
+                </div>
+
+                <!-- الباقة السنوية -->
+                <div class="package-card">
+                    <h3 class="package-name">باقة سنوية</h3>
+                    <div class="package-price">$120 <span>/سنة</span></div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> كل المميزات السابقة</li>
+                        <li><i class="fas fa-check"></i> توفير 33%</li>
+                        <li><i class="fas fa-check"></i> قنوات خاصة بدون إعلانات</li>
+                        <li><i class="fas fa-check"></i> دعم فني فوري</li>
+                        <li><i class="fas fa-check"></i> تشغيل على 5 أجهزة</li>
+                    </ul>
+                    <a href="#payment" class="cta-button">اشتري الآن</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم طرق الدفع -->
+    <section class="payment" id="payment">
+        <div class="container">
+            <h2 class="section-title">طرق الدفع المتاحة</h2>
+            <div class="payment-container">
+                <!-- PayPal -->
+                <div class="payment-method-card">
+                    <div class="payment-header">
+                        <div class="payment-icon paypal">
+                            <i class="fab fa-paypal"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>الدفع عبر PayPal</h3>
+                            <p>دفع آمن وسريع عبر نظام PayPal المشهور عالمياً</p>
+                        </div>
+                    </div>
+                    <div class="payment-action">
+                        <a href="https://www.paypal.com/paypalme/mohamedatemni91" class="payment-link" target="_blank">
+                            <i class="fab fa-paypal"></i> الدفع عبر PayPal الآن
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Crypto -->
+                <div class="payment-method-card">
+                    <div class="payment-header">
+                        <div class="payment-icon crypto">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>الدفع بالعملات الرقمية</h3>
+                            <p>Bitcoin, Ethereum, USDT وغيرها من العملات المشفرة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="crypto-selector">
+                        <p><strong>اختر نوع العملة:</strong></p>
+                        
+                        <div class="crypto-options">
+                            <div class="crypto-option active" data-coin="btc" onclick="selectCrypto('btc')">
+                                <i class="fab fa-bitcoin crypto-icon btc-icon"></i>
+                                <span>Bitcoin (BTC)</span>
+                            </div>
+                            
+                            <div class="crypto-option" data-coin="usdt" onclick="selectCrypto('usdt')">
+                                <i class="fas fa-coins crypto-icon usdt-icon"></i>
+                                <span>USDT</span>
+                            </div>
+                            
+                            <div class="crypto-option" data-coin="eth" onclick="selectCrypto('eth')">
+                                <i class="fab fa-ethereum crypto-icon eth-icon"></i>
+                                <span>Ethereum (ETH)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Bitcoin Address -->
+                        <div class="crypto-address-container active" id="btc-address-container">
+                            <p>عنوان محفظة Bitcoin:</p>
+                            <div class="crypto-address-display">
+                                <span class="crypto-address-text" id="btc-address-text">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                                <button class="copy-address-btn" onclick="copyCryptoAddress('btc')">
+                                    <i class="fas fa-copy"></i> نسخ العنوان
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- USDT Address -->
+                        <div class="crypto-address-container" id="usdt-address-container">
+                            <p>عنوان محفظة USDT (TRC20/ERC20):</p>
+                            <div class="crypto-address-display">
+                                <span class="crypto-address-text" id="usdt-address-text">0x742d35Cc6634C0532925a3b844Bc9e6a5e4c7c9d</span>
+                                <button class="copy-address-btn" onclick="copyCryptoAddress('usdt')">
+                                    <i class="fas fa-copy"></i> نسخ العنوان
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Ethereum Address -->
+                        <div class="crypto-address-container" id="eth-address-container">
+                            <p>عنوان محفظة Ethereum:</p>
+                            <div class="crypto-address-display">
+                                <span class="crypto-address-text" id="eth-address-text">0x742d35Cc6634C0532925a3b844Bc9e6a5e4c7c9d</span>
+                                <button class="copy-address-btn" onclick="copyCryptoAddress('eth')">
+                                    <i class="fas fa-copy"></i> نسخ العنوان
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Western Union -->
+                <div class="payment-method-card">
+                    <div class="payment-header">
+                        <div class="payment-icon wu">
+                            <i class="fas fa-money-bill-transfer"></i>
+                        </div>
+                        <div class="payment-info">
+                            <h3>الدفع عبر Western Union</h3>
+                            <p>تحويل أموال سريع وآمن إلى أي مكان في العالم</p>
+                        </div>
+                    </div>
+                    <div class="wu-info">
+                        <p>معلومات التحويل عبر Western Union متاحة عند التواصل معنا على الواتساب</p>
+                    </div>
+                    <div class="payment-action">
+                        <a href="https://wa.me/212626995045?text=أريد معلومات التحويل عبر Western Union" class="payment-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i> الحصول على معلومات التحويل
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">التواصل السريع</h2>
+            <div class="whatsapp-contact">
+                <i class="fab fa-whatsapp"></i>
+                <h3>تواصل معنا مباشرة عبر واتساب</h3>
+                <p>للحصول على المساعدة الفورية، الاستفسار عن الخدمة، أو لإتمام عملية الشراء، راسلنا مباشرة على الواتساب وسنجيبك في أسرع وقت</p>
+                <a href="https://wa.me/212626995045?text=مرحبا، أريد الاستفسار عن خدمة Atlas IPTV" class="whatsapp-button" target="_blank">
+                    <i class="fab fa-whatsapp"></i> راسلنا على واتساب الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التقييمات -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">آراء عملائنا</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>أحمد السعدي</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>أشكركم على الخدمة المميزة، القنوات تعمل بسلاسة وجودة عالية، والدعم الفني سريع في الرد. أنصح الجميع بهذه الخدمة.</p>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>فاطمة الزهراء</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>خدمة رائعة ومحتوى غني، خاصة القنوات الرياضية والوثائقية. سعرها معقول مقارنة بالخدمات الأخرى.</p>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>محمد العلام</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>اشتريت الباقة السنوية منذ 8 أشهر والخدمة ممتازة بدون انقطاع. الدعم الفني محترف وسريع في حل المشاكل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-satellite-dish"></i>
+                    <span>Atlas IPTV</span>
+                </div>
+                <p>أفضل خدمة IPTV لمشاهدة القنوات التلفزيونية المباشرة، الأفلام، المسلسلات، والأحداث الرياضية</p>
+                <div class="footer-links">
+                    <a href="#home">الرئيسية</a>
+                    <a href="#movies">الأفلام والمسلسلات</a>
+                    <a href="#packages">الباقات</a>
+                    <a href="#payment">طرق الدفع</a>
+                    <a href="#testimonials">التقييمات</a>
+                    <a href="#contact">التواصل</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 Atlas IPTV. جميع الحقوق محفوظة. | للدعم والتواصل: <a href="https://wa.me/212626995045" target="_blank">واتساب فقط</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تفعيل تأثير التمرير السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // إضافة تأثيرات للباقات عند التمرير
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // تطبيق تأثيرات على عناصر الموقع
+        document.querySelectorAll('.package-card, .testimonial, .payment-method-card, .movie-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+
+        // تغيير لون الشريط العلوي عند التمرير
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(10, 25, 41, 0.95)';
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.backgroundColor = 'rgba(10, 25, 41, 0.9)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // دالة اختيار العملة الرقمية
+        function selectCrypto(coin) {
+            // إزالة النشاط من جميع الخيارات
+            document.querySelectorAll('.crypto-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            
+            // إخفاء جميع عناوين العملات
+            document.querySelectorAll('.crypto-address-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            
+            // إضافة النشاط للخيار المحدد
+            const selectedOption = document.querySelector(`.crypto-option[data-coin="${coin}"]`);
+            selectedOption.classList.add('active');
+            
+            // عرض العنوان المحدد
+            const addressContainer = document.getElementById(`${coin}-address-container`);
+            addressContainer.classList.add('active');
+        }
+
+        // دالة نسخ عنوان العملة الرقمية
+        function copyCryptoAddress(coin) {
+            const addressElement = document.getElementById(`${coin}-address-text`);
+            const address = addressElement.textContent;
+            const coinNames = {
+                'btc': 'Bitcoin',
+                'usdt': 'USDT',
+                'eth': 'Ethereum'
+            };
+            
+            navigator.clipboard.writeText(address).then(() => {
+                showNotification(`تم نسخ عنوان ${coinNames[coin]} إلى الحافظة`);
+            }).catch(err => {
+                // طريقة بديلة للمتصفحات القديمة
+                const textArea = document.createElement("textarea");
+                textArea.value = address;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                showNotification(`تم نسخ عنوان ${coinNames[coin]} إلى الحافظة`);
+            });
+        }
+
+        // دالة إظهار رسالة تأكيد
+        function showNotification(message) {
+            // إزالة أي إشعار سابق
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // إنشاء إشعار جديد
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #25d366;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                z-index: 1000;
+                font-weight: bold;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                animation: fadeInOut 3s ease;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // إزالة الإشعار بعد 3 ثواني
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // إضافة أنيميشن للإشعار
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateY(-20px); }
+                15% { opacity: 1; transform: translateY(0); }
+                85% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
