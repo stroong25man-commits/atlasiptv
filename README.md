@@ -859,7 +859,7 @@
                         </div>
                     </div>
                     <div class="payment-action">
-                        <a href="https://www.paypal.com/paypalme/mohamedatemni91" class="payment-link" target="_blank">
+                        <a href="https://https://paypal.me/medatemni?locale.x=en_US&country.x=MA" target="_blank">
                             <i class="fab fa-paypal"></i> الدفع عبر PayPal الآن
                         </a>
                     </div>
