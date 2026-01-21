@@ -859,7 +859,7 @@
                         </div>
                     </div>
                     <div class="payment-action">
-                        <a href="https://https://paypal.me/medatemni?locale.x=en_US&country.x=MA" target="_blank">
+                        <a href="https://paypal.me/medatemni?locale.x=en_US&country.x=MA" target="_blank">
                             <i class="fab fa-paypal"></i> الدفع عبر PayPal الآن
                         </a>
                     </div>
@@ -901,7 +901,7 @@
                         <div class="crypto-address-container active" id="btc-address-container">
                             <p>عنوان محفظة Bitcoin:</p>
                             <div class="crypto-address-display">
-                                <span class="crypto-address-text" id="btc-address-text">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                                <span class="crypto-address-text" id="btc-address-text">00000</span>
                                 <button class="copy-address-btn" onclick="copyCryptoAddress('btc')">
                                     <i class="fas fa-copy"></i> نسخ العنوان
                                 </button>
@@ -912,7 +912,7 @@
                         <div class="crypto-address-container" id="usdt-address-container">
                             <p>عنوان محفظة USDT (TRC20/ERC20):</p>
                             <div class="crypto-address-display">
-                                <span class="crypto-address-text" id="usdt-address-text">0x742d35Cc6634C0532925a3b844Bc9e6a5e4c7c9d</span>
+                                <span class="crypto-address-text" id="usdt-address-text">12345</span>
                                 <button class="copy-address-btn" onclick="copyCryptoAddress('usdt')">
                                     <i class="fas fa-copy"></i> نسخ العنوان
                                 </button>
@@ -923,7 +923,7 @@
                         <div class="crypto-address-container" id="eth-address-container">
                             <p>عنوان محفظة Ethereum:</p>
                             <div class="crypto-address-display">
-                                <span class="crypto-address-text" id="eth-address-text">0x742d35Cc6634C0532925a3b844Bc9e6a5e4c7c9d</span>
+                                <span class="crypto-address-text" id="eth-address-text">56789</span>
                                 <button class="copy-address-btn" onclick="copyCryptoAddress('eth')">
                                     <i class="fas fa-copy"></i> نسخ العنوان
                                 </button>
